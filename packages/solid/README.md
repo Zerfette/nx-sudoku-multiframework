@@ -1,18 +1,34 @@
+# Solid + TS + Vite + Tailwind + P5
+
 ## Usage
 
 ```bash
 $ npm install # or pnpm install or yarn install
 ```
 
-## Icons
+## Bookmarks
 
-https://fontawesome.com/v6/icons?m=free&s=solid
+- https://www.solidjs.com/docs/latest/api
+
+- https://fontawesome.com/v6/icons?o=r&m=free
+
+- https://p5js.org/reference/
+
+- https://tailwindcss.com/docs
+
+- https://vitejs.dev/guide/
+
+- https://www.typescriptlang.org/docs/
 
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `npm run dev`
+
+In the nx directory, you can run:
+
+### `npx nx run solid:dev`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
@@ -21,10 +37,3 @@ Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 Builds the app for production to the `dist` folder.<br>
 It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
