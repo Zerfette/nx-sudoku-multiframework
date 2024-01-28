@@ -1,31 +1,46 @@
 import { Option } from 'fp-ts/Option'
 import { NonEmptyArray } from 'fp-ts/NonEmptyArray'
+import { Endomorphism } from 'fp-ts/lib/Endomorphism'
+import { Action } from '../actions/types'
 
 export enum Dimension {
-  ROW,
-  COL,
-  REG,
+  ROW = 'ROW',
+  COL = 'COL',
+  REG = 'REG',
 }
 export type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
-export type Smalls = Digit[]
+export enum Editable {
+  LOCKED = 'LOCKED',
+  UNLOCKED = 'UNLOCKED',
+}
 
-export type Cell = {
+export enum Decoration {
+  CONFLICTED = 'CONFLICTED',
+  HIGHLIGHTED = 'HIGHLIGHTED',
+  SELECTED = 'SELECTED',
+  NONE = 'NONE',
+}
+
+export type Location = {
   ind: number
-  value: Digit
   row: number
   col: number
   reg: number
-  selected: boolean
-  locked: boolean
-  highlighted: boolean
-  corner: Smalls
-  middle: Smalls
+}
+
+export type Cell = {
+  value: Digit
+  location: Location
+  editable: Editable
+  decoration: Decoration
+  corner: Digit[]
+  middle: Digit[]
 }
 
 export type Board = Cell[]
 
-export type Puzzle = number[][]
+export type Puzzle = Digit[][]
 
 export type Toggles = Record<string, boolean>
 
@@ -44,4 +59,8 @@ export type State = {
   selectedNumber: Digit
 }
 
-export type Mutation<S, P> = (state: S, payload: P) => S
+export type Mutation<S, P> = (payload: P) => Endomorphism<S>
+
+export type Dispatch = (action: Action) => void
+export type DispatchMap = (actions: Action[]) => void
+export type DispatchFold = (actionsOptional: Option<Action[]>) => void

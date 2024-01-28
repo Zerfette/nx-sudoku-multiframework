@@ -66,6 +66,9 @@ export const ifElse: IfElse =
 // Determines if a boolean is false
 export const isFalse: Predicate<boolean> = equals(bEq)(false)
 
+// Determines if a boolean is true
+export const isTrue: Predicate<boolean> = equals(bEq)(true)
+
 // Determines if a number is zero
 export const isZero: Predicate<number> = equals(nEq)(0)
 
@@ -123,6 +126,7 @@ export const when: When = (predicate, fn) =>
   ifElse(predicate, fn, identity)
 
 export const mapWhen = flow(when, map)
+export const mapIfElse = flow(ifElse, map)
 
 // Converts a number to a 2+ character string (Appends a 0 to numbers less than 10)
 type ZeroPad = (x: number) => string

@@ -1,7 +1,6 @@
 import { lengthIs, lensEq } from 'fns'
 import { elem, filter, map, uniq } from 'fp-ts/Array'
 import { pipe } from 'fp-ts/function'
-import { range } from 'fp-ts/NonEmptyArray'
 import { Eq as nEq } from 'fp-ts/number'
 import { fold } from 'fp-ts/Option'
 import { Lens } from 'monocle-ts'
@@ -11,16 +10,13 @@ import {
   rowLens,
   colLens,
   regLens,
+  locationLens,
 } from '../../interface/optics'
-import { Board, Cell, Digit } from '../../interface/types'
+import { Board, Cell, Digit, Hints } from '../../interface/types'
+import { digits } from '../../interface/toolkit'
 import { isValidPlacement } from '../../model'
 
-type getHints = (board: Board) => {
-  row: Digit[]
-  col: Digit[]
-  reg: Digit[]
-  cell: Digit[]
-}
+type getHints = (board: Board) => Hints
 export const getHints: getHints = (board) => {
   const onNone = () => ({
     row: [],
@@ -32,7 +28,7 @@ export const getHints: getHints = (board) => {
   const onSome = (selection: Cell[]) => {
     const singleSelected = lengthIs(1)(selection)
     const [head] = selection
-    const isValid = (x: number) => isValidPlacement(board)(x)(head)
+    const isValid = (x: Digit) => isValidPlacement(board)(x)(head)
 
     const hasHints = (lens: Lens<Cell, number>) =>
       pipe(selection, map(lens.get), uniq(nEq), lengthIs(1))
@@ -49,16 +45,16 @@ export const getHints: getHints = (board) => {
 
     const get = (lens: Lens<Cell, number>) =>
       hasHints(lens)
-        ? (pipe(range(1, 9), filter(conflicts(lens))) as Digit[])
+        ? (pipe(digits, filter(conflicts(lens))) as Digit[])
         : []
 
     return {
       cell: singleSelected
-        ? (pipe(range(1, 9), filter(isValid)) as Digit[])
+        ? (pipe(digits, filter(isValid)) as Digit[])
         : [],
-      row: get(rowLens),
-      col: get(colLens),
-      reg: get(regLens),
+      row: get(locationLens.compose(rowLens)),
+      col: get(locationLens.compose(colLens)),
+      reg: get(locationLens.compose(regLens)),
     }
   }
 

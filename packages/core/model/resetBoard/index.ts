@@ -3,20 +3,21 @@ import { Endomorphism } from 'fp-ts/Endomorphism'
 import { flow } from 'fp-ts/function'
 import { Board } from '../../interface/types'
 import {
-    clearCorner,
-    clearMiddle,
-    clearValue,
-    deselect,
-    isUnlocked,
-    removeHighlight
+  clearCorner,
+  clearMiddle,
+  clearValue,
+  isUnlocked,
+  removeDecoration,
 } from '../../interface/toolkit'
 
 const reset = flow(
-    deselect,
-    removeHighlight,
-    clearValue,
-    clearCorner,
-    clearMiddle
+  removeDecoration,
+  clearValue,
+  clearCorner,
+  clearMiddle
 )
 
-export const resetBoard: Endomorphism<Board> = mapWhen(isUnlocked, reset)
+export const resetBoard: Endomorphism<Board> = mapWhen(
+  isUnlocked,
+  reset
+)

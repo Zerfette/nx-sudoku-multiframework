@@ -1,11 +1,11 @@
 {
-    "name": "core",
-    "version": "1.0.0",
-    "dependencies": {
-        "interface": "*",
-        "fns": "*",
-        "fp-ts": "^2.16.0",
-        "monocle-ts": "^2.3.13",
-        "typescript": "^5.3.3"
-    }
+  "name": "core",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
+  "dependencies": {
+    "fns": "*"
+  }
 }

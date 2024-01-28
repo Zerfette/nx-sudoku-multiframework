@@ -1,9 +1,4 @@
 {
   "name": "fns",
-  "version": "1.0.0",
-  "dependencies": {
-    "fp-ts": "^2.16.0",
-    "monocle-ts": "^2.3.13",
-    "typescript": "^5.3.3"
-  }
+  "version": "1.0.0"
 }

@@ -1,12 +1,9 @@
 import { map, replicate } from 'fp-ts/Array'
-import { constant, pipe } from 'fp-ts/function'
+import { constant } from 'fp-ts/function'
 import { puzzleToBoard } from '../puzzleToBoard'
-import { Board } from '../../interface/types'
+import { Board, Digit } from '../../interface/types'
 
-const emptyRow = replicate(9, 0)
+const emptyRow = replicate(9, 0) as Digit[]
+const emptyPuzzle = map(constant(emptyRow))(emptyRow)
 
-export const clearBoard: Board = pipe(
-  emptyRow,
-  map(constant(emptyRow)),
-  puzzleToBoard
-)
+export const clearBoard: Board = puzzleToBoard(emptyPuzzle)

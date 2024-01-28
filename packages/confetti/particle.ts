@@ -2,14 +2,14 @@ import P5 from 'p5'
 import { chain, map } from 'fp-ts/Array'
 import { Ord } from 'fp-ts/number'
 import { geq, leq } from 'fp-ts/Ord'
-import { colors } from 'theme'
+import { colors } from './colors'
 import { directions, RotationDirection } from './rotationDirection'
 import { Shape } from './types'
 
 const shapes = [Shape.CIRCLE, Shape.SQUARE]
 
 const confettiColors = chain((c: keyof typeof colors) =>
-  map((x: keyof typeof colors.teal) => colors[c][x])([200, 400, 600])
+  map((x: keyof typeof colors.teal) => colors[c][x])([200, 400])
 )(['teal', 'purple', 'cyan', 'orange', 'pink', 'red', 'yellow'])
 
 // [
@@ -53,7 +53,7 @@ export class Particle {
     this.shape = p5.random(shapes)
     this.size = p5.random(8, 16)
     this.color = p5.random(confettiColors)
-    this.acceleration = p5.createVector(0, 0.005 * this.size)
+    this.acceleration = p5.createVector(0, 0.003 * this.size)
     this.velocity = p5.createVector(p5.random(-1, 1), 0)
     this.position = p5.createVector(p5.random(0, p5.width), -15)
     this.rotateY = p5.random(0, 1)

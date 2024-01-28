@@ -1,4 +1,3 @@
-export * from './useAutosolve'
-export * from './useDisclosure'
-export * from './useKeydown'
-export * from './useStopwatch'
+export * from './disclosure'
+export * from './keydown'
+export * from './stopwatch'

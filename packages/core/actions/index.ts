@@ -1,8 +1,8 @@
 import { Lens } from 'monocle-ts'
-import { Cell, Digit, Puzzle, Smalls, Toggles } from '../interface/types'
+import { Cell, Digit, Location, Puzzle, Toggles } from '../interface/types'
 import { ActionType } from './types'
 
-export const autosolve = (payload: { ind: number; value: Digit }) =>
+export const autosolve = (payload: { location: Location; value: Digit }) =>
   <const>{ type: ActionType.AUTOSOLVE, payload }
 
 export const selectNumber = (payload: { value: Digit }) =>
@@ -22,12 +22,12 @@ export const setToggle = (payload: {
 export const toggle = (payload: { lens: Lens<Toggles, boolean> }) =>
   <const>{ type: ActionType.TOGGLE, payload }
 
-export const updateBig = (payload: { value: number }) =>
+export const updateBig = (payload: { value: Digit }) =>
   <const>{ type: ActionType.UPDATE_BIG, payload }
 
 export const updateSmall = (payload: {
-  lens: Lens<Cell, Smalls>
-  value: number
+  lens: Lens<Cell, Digit[]>
+  value: Digit
 }) => <const>{ type: ActionType.UPDATE_SMALL, payload }
 
 export const clearBoard = <const>{ type: ActionType.CLEAR_BOARD }

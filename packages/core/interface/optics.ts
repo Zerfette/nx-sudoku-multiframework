@@ -1,28 +1,36 @@
 import { Lens } from 'monocle-ts'
-import { Board, Cell, Digit, Smalls, State, Toggles } from './types'
+import {
+  Board,
+  Cell,
+  Editable,
+  Decoration,
+  Digit,
+  Location,
+  State,
+  Toggles,
+} from './types'
 
 export const boardLens: Lens<State, Board> =
   Lens.fromProp<State>()('board')
-
-export const indLens: Lens<Cell, number> =
-  Lens.fromProp<Cell>()('ind')
+export const locationLens: Lens<Cell, Location> =
+  Lens.fromProp<Cell>()('location')
+export const indLens: Lens<Location, number> =
+  Lens.fromProp<Location>()('ind')
+export const rowLens: Lens<Location, number> =
+  Lens.fromProp<Location>()('row')
+export const colLens: Lens<Location, number> =
+  Lens.fromProp<Location>()('col')
+export const regLens: Lens<Location, number> =
+  Lens.fromProp<Location>()('reg')
 export const valueLens: Lens<Cell, Digit> =
   Lens.fromProp<Cell>()('value')
-export const rowLens: Lens<Cell, number> =
-  Lens.fromProp<Cell>()('row')
-export const colLens: Lens<Cell, number> =
-  Lens.fromProp<Cell>()('col')
-export const regLens: Lens<Cell, number> =
-  Lens.fromProp<Cell>()('reg')
-export const selectedLens: Lens<Cell, boolean> =
-  Lens.fromProp<Cell>()('selected')
-export const highlightedLens: Lens<Cell, boolean> =
-  Lens.fromProp<Cell>()('highlighted')
-export const lockedLens: Lens<Cell, boolean> =
-  Lens.fromProp<Cell>()('locked')
-export const cornerLens: Lens<Cell, Smalls> =
+export const decorationLens: Lens<Cell, Decoration> =
+  Lens.fromProp<Cell>()('decoration')
+export const editableLens: Lens<Cell, Editable> =
+  Lens.fromProp<Cell>()('editable')
+export const cornerLens: Lens<Cell, Digit[]> =
   Lens.fromProp<Cell>()('corner')
-export const middleLens: Lens<Cell, Smalls> =
+export const middleLens: Lens<Cell, Digit[]> =
   Lens.fromProp<Cell>()('middle')
 
 export const selectedNumberLens: Lens<State, Digit> =

@@ -1,0 +1,27 @@
+<script lang="ts">
+  import Fa from 'svelte-fa'
+  import {
+    faPause,
+    faPlay,
+    faRotateLeft,
+  } from '@fortawesome/free-solid-svg-icons'
+  import { style } from 'core/style'
+  import { getContext } from 'svelte'
+  import type { Stopwatch } from '~/lib/hooks'
+  const { time, isRunning, resetTimer, toggleTimer } =
+    getContext<Stopwatch>('stopwatch')
+</script>
+
+<div class={style.menu.timer.root}>
+  <p class={style.menu.timer.txt}>{$time}</p>
+  <div class={style.menu.timer.btn} on:click={toggleTimer}>
+    {#if $isRunning}
+      <Fa icon={faPause} size="sm" />
+    {:else}
+      <Fa icon={faPlay} size="sm" />
+    {/if}
+  </div>
+  <div class={style.menu.timer.btn} on:click={resetTimer}>
+    <Fa icon={faRotateLeft} size="sm" />
+  </div>
+</div>
