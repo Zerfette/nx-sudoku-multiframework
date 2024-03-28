@@ -11,12 +11,14 @@
     const eventData = { event, payload }
     pipe(eventData, mouseOutsideEvent, dispatchFold)
   }
+  const onMouseOut = setMouseOutside(true)
+  const onMouseOver = setMouseOutside(false)
 </script>
 
 <div
   class={style.board.root}
-  on:mouseout={setMouseOutside(true)}
-  on:mouseover={setMouseOutside(false)}
+  on:mouseout={onMouseOut}
+  on:mouseover={onMouseOver}
 >
   {#each regionIndicies as region}
     <Region {region} />

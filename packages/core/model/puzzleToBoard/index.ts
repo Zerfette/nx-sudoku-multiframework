@@ -1,15 +1,15 @@
 import { isNonZero } from 'fns'
 import { chainWithIndex, mapWithIndex } from 'fp-ts/Array'
-import { Endomorphism } from 'fp-ts/Endomorphism'
+import type { Endomorphism } from 'fp-ts/Endomorphism'
 import { flow } from 'fp-ts/function'
 import { indLens, locationLens } from '../../interface/optics'
 import {
-  Board,
-  Cell,
+  type Board,
+  type Cell,
   Decoration,
-  Digit,
+  type Digit,
   Editable,
-  Puzzle,
+  type Puzzle,
 } from '../../interface/types'
 
 const op: Endomorphism<number> = (x) => Math.floor(x / 3)

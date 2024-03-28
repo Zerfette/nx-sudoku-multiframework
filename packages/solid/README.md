@@ -31,7 +31,7 @@ In the nx directory, you can run:
 ### `npx nx run solid:dev`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+Open [http://localhost:5005](http://localhost:5005) to view it in the browser.
 
 ### `npm run build`
 

@@ -1,5 +1,11 @@
 import type { Action } from 'core/actions/types'
 import { ActionType } from 'core/actions/types'
+import {
+  canAutosolve,
+  getHints,
+  getSelectedOption,
+  isSolved,
+} from 'core/computed'
 import { initialState } from 'core/interface/init'
 import {
   autosolve,
@@ -21,12 +27,6 @@ import { map } from 'fp-ts/Array'
 import { constVoid } from 'fp-ts/function'
 import { fold } from 'fp-ts/Option'
 import { derived, readonly, writable } from 'svelte/store'
-import {
-  canAutosolve,
-  getHints,
-  getSelectedOption,
-  isSolved,
-} from 'core/computed'
 
 const board = writable(initialState.board)
 const selectedNumber = writable(initialState.selectedNumber)

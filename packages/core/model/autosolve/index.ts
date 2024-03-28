@@ -9,8 +9,8 @@ import {
   intersects,
   setValue,
 } from '../../interface/toolkit'
-import { Board, Mutation } from '../../interface/types'
-import { Payload } from './types'
+import type { Board, Mutation } from '../../interface/types'
+import type { Payload } from './types'
 
 type autosolve = Mutation<Board, Payload>
 export const autosolve: autosolve =

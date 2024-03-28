@@ -7,9 +7,10 @@ import {
   select,
   valueIs,
 } from '../../interface/toolkit'
-import { Board, Digit, Mutation } from '../../interface/types'
+import type { Board, Digit, Mutation } from '../../interface/types'
 import { isValidPlacement } from '../isValidPlacement'
 import { decorateConflicts } from '../decorateConflicts'
+import type { Payload } from './types'
 
 const highlightIfValueIs = (value: Digit) =>
   when(valueIs(value), highlight)
@@ -17,7 +18,7 @@ const highlightIfValueIs = (value: Digit) =>
 const selectIfValidPlacement = (board: Board, value: Digit) =>
   when(isValidPlacement(board)(value), select)
 
-type selectNumber = Mutation<Board, { value: Digit }>
+type selectNumber = Mutation<Board, Payload>
 export const selectNumber: selectNumber =
   ({ value }) =>
   (board) =>

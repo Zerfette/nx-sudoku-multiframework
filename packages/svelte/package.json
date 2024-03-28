@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5001 --open",
+    "dev": "vite --port 5006",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
@@ -12,7 +12,6 @@
     "confetti": "*",
     "core": "*",
     "svelte-fa": "4.0.2",
-    "@fortawesome/free-solid-svg-icons": "6.5.1",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@tsconfig/svelte": "^5.0.2",
     "svelte": "^4.2.8",

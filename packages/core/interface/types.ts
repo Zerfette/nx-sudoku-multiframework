@@ -1,7 +1,7 @@
-import { Option } from 'fp-ts/Option'
-import { NonEmptyArray } from 'fp-ts/NonEmptyArray'
-import { Endomorphism } from 'fp-ts/lib/Endomorphism'
-import { Action } from '../actions/types'
+import type { Option } from 'fp-ts/Option'
+import type { NonEmptyArray } from 'fp-ts/NonEmptyArray'
+import type { Endomorphism } from 'fp-ts/lib/Endomorphism'
+import type { Action } from '../actions/types'
 
 export enum Dimension {
   ROW = 'ROW',
