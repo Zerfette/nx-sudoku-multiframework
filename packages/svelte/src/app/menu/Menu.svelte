@@ -15,11 +15,11 @@
   const { isSolved } = state
   setContext('stopwatch', stopwatch)
   onMount(stopwatch.startTimer)
-  $: {
+  $effect(() => {
     if ($isSolved && $isRunning) {
       stopwatch.stopTimer()
     }
-  }
+  })
 </script>
 
 <div class={style.menu.root}>

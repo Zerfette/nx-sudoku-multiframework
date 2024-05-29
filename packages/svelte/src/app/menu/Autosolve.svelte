@@ -6,15 +6,15 @@
   import { style } from 'core/style'
   import { dispatch, state } from '~/store'
 
-  const onClick = () => dispatch(toggle({ lens: autosolveLens }))
+  const onclick = () =>
+    dispatch(toggle({ lens: autosolveLens }))
   const { toggles } = state
+  const className = $derived($toggles.autosolve
+    ? style.menu.btns.on
+    : style.menu.btns.off
+  )
 </script>
 
-<div
-  class={$toggles.autosolve
-    ? style.menu.btns.on
-    : style.menu.btns.off}
-  on:click={onClick}
->
+<button class={className} {onclick}>
   <Fa icon={faHatWizard} size="lg" />
-</div>
+</button>

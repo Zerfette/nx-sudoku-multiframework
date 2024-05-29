@@ -4,6 +4,6 @@
   import { style } from 'core/style'
 </script>
 
-<div class={style.menu.btns.off}>
+<button class={style.menu.btns.off}>
   <Fa icon={faQuestion} size="lg" />
-</div>
+</button>

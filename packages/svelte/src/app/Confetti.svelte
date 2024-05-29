@@ -20,4 +20,4 @@
   onDestroy(() => p5?.remove())
 </script>
 
-<div bind:this={canvas} class={style.menu.confetti} />
+<div bind:this={canvas} class={style.menu.confetti}></div>

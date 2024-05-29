@@ -7,16 +7,16 @@
   import { dispatch } from '~/store'
 
   const { isOpen, onToggle } = useDisclosure()
-  const onClick = () => {
+  const onclick = () => {
     $isOpen ? dispatch(lockBoard) : dispatch(clearBoard)
     onToggle()
   }
 </script>
 
-<div class={style.menu.btns.off} on:click={onClick}>
+<button class={style.menu.btns.off} {onclick}>
   {#if $isOpen}
     <Fa icon={faLock} size="lg" />
   {:else}
     <Fa icon={faPlus} size="lg" />
   {/if}
-</div>
+</button>

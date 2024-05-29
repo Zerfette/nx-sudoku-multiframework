@@ -14,10 +14,15 @@
   import Menu from './menu/Menu.svelte'
   import Hint from './hint/Hint.svelte'
 
-  const { canAutosolve, hints, selectedNumber, selection, toggles } =
-    state
+  const {
+    canAutosolve,
+    hints,
+    selectedNumber,
+    selection,
+    toggles,
+  } = state
 
-  const onMouseDown = (event: MouseEvent) => {
+  const onmousedown = (event: MouseEvent) => {
     const payload = {
       selection: $selection,
       toggles: $toggles,
@@ -26,7 +31,7 @@
     pipe(eventData, mouseDownEvent, dispatchFold)
   }
 
-  const onMouseUp = (event: MouseEvent) =>
+  const onmouseup = (event: MouseEvent) =>
     dispatchFold(mouseUpEvent({ event, payload: {} }))
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -36,7 +41,11 @@
   }
   useKeyDown(onKeyDown)
 
-  $: {
+  const classname = $derived(
+    $toggles.darkMode ? style.root.dark : style.root.light
+  )
+
+  $effect(() => {
     if ($canAutosolve) {
       const payload = {
         hints: $hints,
@@ -46,14 +55,14 @@
       const eventData = { event: {}, payload }
       pipe(eventData, autosolveEvent, dispatchFold)
     }
-  }
+  })
 </script>
 
 <main>
   <div
-    class={$toggles.darkMode ? style.root.dark : style.root.light}
-    on:mousedown={onMouseDown}
-    on:mouseup={onMouseUp}
+    class={classname}
+    {onmousedown}
+    {onmouseup}
     role="none"
   >
     <Menu />

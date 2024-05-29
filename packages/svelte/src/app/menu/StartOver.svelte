@@ -5,9 +5,9 @@
   import { style } from 'core/style'
   import { dispatch } from '~/store'
 
-  const onClick = () => dispatch(resetBoard)
+  const onclick = () => dispatch(resetBoard)
 </script>
 
-<div class={style.menu.btns.off} on:click={onClick}>
+<button class={style.menu.btns.off} {onclick}>
   <Fa icon={faRotate} size="lg" />
-</div>
+</button>

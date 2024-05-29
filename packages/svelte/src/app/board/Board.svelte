@@ -6,19 +6,24 @@
   import { dispatchFold } from '~/store'
   import Region from './Region.svelte'
 
-  const setMouseOutside = (value: boolean) => (event: MouseEvent) => {
-    const payload = { value }
-    const eventData = { event, payload }
-    pipe(eventData, mouseOutsideEvent, dispatchFold)
-  }
-  const onMouseOut = setMouseOutside(true)
-  const onMouseOver = setMouseOutside(false)
+  const setMouseOutside =
+    (value: boolean) =>
+    (event: MouseEvent | FocusEvent) => {
+      const payload = { value }
+      const eventData = { event, payload }
+      pipe(eventData, mouseOutsideEvent, dispatchFold)
+    }
+  const onmouseout = setMouseOutside(true)
+  const onmouseover = setMouseOutside(false)
 </script>
 
 <div
   class={style.board.root}
-  on:mouseout={onMouseOut}
-  on:mouseover={onMouseOver}
+  {onmouseout}
+  onblur={onmouseout}
+  {onmouseover}
+  onfocus={onmouseover}
+  role="none"
 >
   {#each regionIndicies as region}
     <Region {region} />
