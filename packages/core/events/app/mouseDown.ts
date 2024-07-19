@@ -1,6 +1,5 @@
-import { none, some } from 'fp-ts/Option'
+import { some } from 'fp-ts/Option'
 import { getMonoid } from 'fp-ts/Array'
-import { IO } from 'fp-ts/IO'
 import { isNone } from 'fp-ts/Option'
 import { clearSelection, setToggle } from '../../actions'
 import { Action } from '../../actions/types'

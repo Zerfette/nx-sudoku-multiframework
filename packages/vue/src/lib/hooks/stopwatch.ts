@@ -29,7 +29,7 @@ export const useStopwatch: IO<Stopwatch> = () => {
   }
 
   let interval: NodeJS.Timeout
-  // onUnmounted(() => clearInterval(interval))
+  onUnmounted(() => clearInterval(interval))
 
   const resetTimer = () => {
     isRunning.value = false

@@ -1,6 +1,6 @@
 import { Cell, Digit, Hints, Selection } from 'core/interface/types'
 import { lengthIs } from 'fns'
-import { filter, isEmpty, map } from 'fp-ts/Array'
+import { filter, map } from 'fp-ts/Array'
 import { fold as bFold } from 'fp-ts/boolean'
 import { none, fold as oFold, some } from 'fp-ts/Option'
 import { autosolve } from '../../actions'
