@@ -1,11 +1,5 @@
 import type { Action } from 'core/actions/types'
 import { ActionType } from 'core/actions/types'
-import {
-  canAutosolve,
-  getHints,
-  getSelectedOption,
-  isSolved,
-} from 'core/computed'
 import { initialState } from 'core/interface/init'
 import {
   autosolve,
@@ -22,25 +16,17 @@ import {
   updateBig,
   updateSmall,
 } from 'core/model'
-import type {
-  DispatchFold,
-  DispatchMap,
-  Hints,
-  Selection,
-  State,
-} from 'core/interface/types'
+import type { State } from 'core/interface/types'
 import { map } from 'fp-ts/Array'
 import { constVoid, pipe } from 'fp-ts/function'
-import { fold } from 'fp-ts/Option'
+import { fold, Option } from 'fp-ts/Option'
 import {
   createContext,
+  useContext,
   useReducer,
   Reducer,
   PropsWithChildren,
-  Dispatch,
-  useMemo,
 } from 'react'
-import { boardLens } from 'core/interface/optics'
 
 const reducer: Reducer<State, Action> = (
   { board, selectedNumber, toggles },
@@ -134,54 +120,39 @@ const reducer: Reducer<State, Action> = (
   }
 }
 
-const store = createContext(initialState)
-
-type Computed = {
-  hints: Hints
-  selection: Selection
-  isSolved: boolean
-  canAutosolve: boolean
-}
-
-type ProviderProps = {
-  computed: Computed
-  state: State
-  dispatch: Dispatch<Action>
-  dispatchMap: DispatchMap
-  dispatchFold: DispatchFold
-}
-
-const StateProvider = ({ children }: PropsWithChildren) => {
-  const [state, dispatch] = useReducer<Reducer<State, Action>>(
-    reducer,
-    initialState
+const logDispatchError = () =>
+  console.error(
+    'Failed to read dispatch function from StateProvider.'
   )
+
+const StoreContext = createContext({
+  state: initialState,
+  dispatch: (_: Action) => logDispatchError(),
+  dispatchMap: (_: Action[]) => logDispatchError(),
+  dispatchFold: (_: Option<Action[]>) => logDispatchError(),
+})
+
+const StoreProvider = ({ children }: PropsWithChildren) => {
+  const [state, dispatch] = useReducer<
+    Reducer<State, Action>
+  >(reducer, initialState)
   const dispatchMap = map(dispatch)
   const dispatchFold = fold(constVoid, dispatchMap)
-  const Provider =
-    store.Provider as unknown as React.Provider<ProviderProps>
-  const computed = {
-    hints: useMemo(
-      () => pipe(state, boardLens.get, getHints),
-      [state.board]
-    ),
-    selection: useMemo(
-      () => pipe(state, boardLens.get, getSelectedOption),
-      [state.board]
-    ),
-    isSolved: useMemo(
-      () => pipe(state, boardLens.get, isSolved),
-      [state.board]
-    ),
-    canAutosolve: useMemo(() => pipe(state, canAutosolve), [state]),
-  }
+
   return (
-    <Provider
-      value={{ computed, state, dispatch, dispatchMap, dispatchFold }}
+    <StoreContext.Provider
+      value={{
+        state,
+        dispatch,
+        dispatchMap,
+        dispatchFold,
+      }}
     >
       {children}
-    </Provider>
+    </StoreContext.Provider>
   )
 }
 
-export { store, StateProvider }
+const useStore = () => useContext(StoreContext)
+
+export { useStore, StoreProvider }
