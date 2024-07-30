@@ -1,3 +1,3 @@
-export * from './useDisclosure'
-export * from './useEvent'
-export * from './useStopwatch'
+export * from './disclosure'
+export * from './event'
+export * from './stopwatch'

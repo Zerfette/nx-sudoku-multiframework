@@ -9,7 +9,7 @@ const _ = () => {
   return (
     <div>
       <div class={style.menu.btns.off} onClick={onOpen}>
-        <FaSolidQuestion size={18} />
+        <FaSolidQuestion size={24} />
       </div>
       <Modal isOpen={isOpen} onClose={onClose}>
         This is a test modal

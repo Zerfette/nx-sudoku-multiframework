@@ -1,8 +1,11 @@
 <script lang="ts">
   import { derived } from 'svelte/store'
-  import { getFallback, getHint } from 'core/lib/components/hint'
+  import {
+    getFallback,
+    getHint,
+  } from 'core/lib/components/hint'
   import { style } from 'core/style'
-  import { isNonEmpty } from 'fp-ts/Array'
+  import { isEmpty } from 'fp-ts/Array'
   import { state } from '~/store'
   import Digit from './Digit.svelte'
   import { digits } from 'core/interface/toolkit'
@@ -12,11 +15,14 @@
 </script>
 
 <div class={style.hint.root}>
-  {#if isNonEmpty($hint)}
+  <div class={style.hint.numbers}>
     {#each digits as digit}
       <Digit {digit} hint={$hint} />
     {/each}
-  {:else}
-    <p>{$fallback}</p>
-  {/if}
+  </div>
+  <div class={style.hint.fallback}>
+    {#if isEmpty($hint)}
+      <p>{$fallback}</p>
+    {/if}
+  </div>
 </div>

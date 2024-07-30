@@ -1,3 +1,3 @@
 export * from './disclosure'
-export * from './keydown'
+export * from './event'
 export * from './stopwatch'

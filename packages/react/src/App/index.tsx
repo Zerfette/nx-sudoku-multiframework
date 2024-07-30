@@ -19,7 +19,7 @@ import Hint from './Hint'
 import Menu from './Menu'
 
 const App = () => {
-  const { state, dispatchFold } = useStore()
+  const { state } = useStore()
   const { board, selectedNumber, toggles } = state
   const selection = getSelectedOption(board)
   const className = toggles.darkMode
@@ -34,16 +34,15 @@ const App = () => {
     selection,
   })
 
-  useEffect(() => {
-    if (!canAutosolve(state)) return
-    const payload = {
-      hints: getHints(board),
-      selectedNumber,
-      selection: getSelectedOption(board),
-    }
-    const event = {}
-    dispatchFold(autosolveEvent({ event, payload }))
+  const onAutosolve = useEvent(autosolveEvent)({
+    hints: getHints(board),
+    selectedNumber,
+    selection,
   })
+
+  useEffect(() => {
+    if (canAutosolve(state)) onAutosolve({})
+  }, [board, selectedNumber])
 
   return (
     <div

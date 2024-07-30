@@ -21,7 +21,7 @@ export const style = {
     confetti: 'absolute left-0 top-0',
   },
   board: {
-    root: 'size-board',
+    root: 'size-board mb-1',
     region: 'size-region m-gap float-left',
     cell: {
       [Editable.LOCKED]: {
@@ -47,10 +47,12 @@ export const style = {
     },
   },
   hint: {
-    root: 'flex items-center justify-center text-xl rounded-sm h-16 leading-none text-black dark:text-white',
+    root: 'w-board flex flex-col items-center leading-none text-black dark:text-white',
+    numbers: 'flex',
     number: {
-      on: 'flex items-center justify-center size-8 rounded-sm mr-2 leading-none bg-purple-300 dark:bg-purple-600',
-      off: 'flex items-center justify-center size-8 rounded-sm mr-2 leading-none text-gray-500 bg-gray-300 dark:bg-gray-700',
+      on: 'flex mr-2 items-center justify-center size-8 rounded-sm leading-none text-xl bg-purple-300 dark:bg-purple-600',
+      off: 'flex mr-2 items-center justify-center size-8 rounded-sm leading-none text-xl text-gray-500 bg-gray-300 dark:bg-gray-700',
     },
+    fallback: 'h-16 text-xl text-black dark:text-white'
   },
 }

@@ -11,9 +11,9 @@ const _ = () => {
     <div class={style.menu.btns.off} onClick={onClick}>
       <Show
         when={state.toggles.darkMode}
-        fallback={<FaSolidMoon size={18} />}
+        fallback={<FaSolidMoon size={24} />}
       >
-        <FaSolidSun size={18} />
+        <FaSolidSun size={24} />
       </Show>
     </div>
   )

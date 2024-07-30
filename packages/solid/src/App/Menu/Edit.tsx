@@ -13,8 +13,8 @@ const _ = () => {
   }
   return (
     <div class={style.menu.btns.off} onClick={onClick}>
-      <Show when={isOpen()} fallback={<FaSolidPlus size={18} />}>
-        <FaSolidLock size={18} />
+      <Show when={isOpen()} fallback={<FaSolidPlus size={24} />}>
+        <FaSolidLock size={24} />
       </Show>
     </div>
   )

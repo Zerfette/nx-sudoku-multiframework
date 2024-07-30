@@ -5,13 +5,13 @@ import {
   faPlay,
   faUndoAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { inject } from 'vue'
 import type { Stopwatch } from '~/lib/hooks'
 
-library.add(faPause, faPlay, faUndoAlt)
-const stopwatch = inject<Stopwatch>('stopwatch') as Stopwatch
+const stopwatch = inject<Stopwatch>(
+  'stopwatch'
+) as Stopwatch
 </script>
 
 <template>
@@ -19,13 +19,20 @@ const stopwatch = inject<Stopwatch>('stopwatch') as Stopwatch
     <p :class="style.menu.timer.txt">
       {{ stopwatch.time.value.replace('"', '') }}
     </p>
-    <div :class="style.menu.timer.btn" @click="stopwatch.toggleTimer">
+    <div
+      :class="style.menu.timer.btn"
+      @click="stopwatch.toggleTimer"
+    >
       <font-awesome-icon
-        :icon="stopwatch.isRunning.value ? 'pause' : 'play'"
+        size="sm"
+        :icon="stopwatch.isRunning.value ? faPause : faPlay"
       />
     </div>
-    <div :class="style.menu.timer.btn" @click="stopwatch.resetTimer">
-      <font-awesome-icon icon="undo-alt" />
+    <div
+      :class="style.menu.timer.btn"
+      @click="stopwatch.resetTimer"
+    >
+      <font-awesome-icon size="sm" :icon="faUndoAlt" />
     </div>
   </div>
 </template>

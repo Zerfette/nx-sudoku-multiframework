@@ -7,7 +7,7 @@ const _ = () => {
   const onClick = () => dispatch(resetBoard)
   return (
     <div class={style.menu.btns.off} onClick={onClick}>
-      <FaSolidRotate size={18} />
+      <FaSolidRotate size={24} />
     </div>
   )
 }

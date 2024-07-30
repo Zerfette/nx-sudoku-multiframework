@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5008",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
@@ -15,6 +15,6 @@
     "@fortawesome/vue-fontawesome": "3.0.5",
     "pinia": "^2.1.7",
     "@vitejs/plugin-vue": "^4.5.2",
-    "vue-tsc": "^1.8.25"
+    "vue-tsc": "^2.0.28"
   }
 }

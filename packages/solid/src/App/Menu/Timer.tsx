@@ -13,12 +13,12 @@ const _: Component<{ stopwatch: Stopwatch }> = ({
   <div class={style.menu.timer.root}>
     <p class={style.menu.timer.txt}>{time()}</p>
     <div class={style.menu.timer.btn} onClick={toggleTimer}>
-      <Show when={isRunning()} fallback={<FaSolidPlay size={12} />}>
-        <FaSolidPause size={12} />
+      <Show when={isRunning()} fallback={<FaSolidPlay size={14} />}>
+        <FaSolidPause size={14} />
       </Show>
     </div>
     <div class={style.menu.timer.btn} onClick={resetTimer}>
-      <FaSolidRotateLeft size={12} />
+      <FaSolidRotateLeft size={14} />
     </div>
   </div>
 )

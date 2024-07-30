@@ -7,7 +7,7 @@ import {
   mouseUpEvent,
 } from 'core/events/app'
 import { style } from 'core/style'
-import { useKeyDown } from '~/lib/hooks'
+import { useEvent } from '~/lib/hooks'
 import { state, dispatchFold } from '~/store'
 import Board from './Board'
 import Confetti from './Confetti'
@@ -15,17 +15,12 @@ import Hint from './Hint'
 import Menu from './Menu'
 
 const App: Component = () => {
-  const onMouseDown = (event: MouseEvent) => {
-    const payload = {
-      selection: state.selection,
-      toggles: state.toggles,
-    }
-    const eventData = { event, payload }
-    pipe(eventData, mouseDownEvent, dispatchFold)
-  }
+  const onMouseDown = useEvent(mouseDownEvent)({
+    selection: state.selection,
+    toggles: state.toggles,
+  })
 
-  const onMouseUp = (event: MouseEvent) =>
-    dispatchFold(mouseUpEvent({ event, payload: {} }))
+  const onMouseUp = useEvent(mouseUpEvent)({})
 
   const onKeyDown = (event: KeyboardEvent) => {
     const payload = { selection: state.selection }
@@ -33,26 +28,28 @@ const App: Component = () => {
     pipe(eventData, keyDownEvent, dispatchFold)
   }
 
-  useKeyDown(onKeyDown)
-
-  createEffect(()=> {
+  createEffect(() => {
     if (!state.canAutosolve) return
     const payload = {
       hints: state.hints,
       selectedNumber: state.selectedNumber,
-      selection: state.selection
+      selection: state.selection,
     }
-    const eventData = {event: {}, payload}
+    const eventData = { event: {}, payload }
     pipe(eventData, autosolveEvent, dispatchFold)
   })
 
   return (
     <div
       class={
-        state.toggles.darkMode ? style.root.dark : style.root.light
+        state.toggles.darkMode
+          ? style.root.dark
+          : style.root.light
       }
+      tabIndex={0}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
+      onKeyDown={onKeyDown}
     >
       <Confetti />
       <Menu />

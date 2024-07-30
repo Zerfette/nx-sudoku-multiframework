@@ -6,9 +6,8 @@
     mouseUpEvent,
   } from 'core/events/app'
   import { style } from 'core/style'
-  import { pipe } from 'fp-ts/function'
-  import { dispatchFold, state } from '~/store'
-  import { useKeyDown } from '~/lib/hooks/keydown'
+  import { state } from '~/store'
+  import { useEvent } from '~/lib/hooks'
   import Board from './board/Board.svelte'
   import Confetti from './Confetti.svelte'
   import Menu from './menu/Menu.svelte'
@@ -22,48 +21,38 @@
     toggles,
   } = state
 
-  const onmousedown = (event: MouseEvent) => {
-    const payload = {
-      selection: $selection,
-      toggles: $toggles,
-    }
-    const eventData = { event, payload }
-    pipe(eventData, mouseDownEvent, dispatchFold)
-  }
+  const onmousedown = useEvent(mouseDownEvent)({
+    selection: $selection,
+    toggles: $toggles,
+  })
+  const onmouseup = useEvent(mouseUpEvent)({})
 
-  const onmouseup = (event: MouseEvent) =>
-    dispatchFold(mouseUpEvent({ event, payload: {} }))
-
-  const onKeyDown = (event: KeyboardEvent) => {
-    const payload = { selection: $selection }
-    const eventData = { event, payload }
-    pipe(eventData, keyDownEvent, dispatchFold)
-  }
-  useKeyDown(onKeyDown)
+  const onkeydown = useEvent(keyDownEvent)({
+    selection: $selection,
+  })
+  document.addEventListener('mousedown', onmousedown)
+  document.addEventListener('mouseup', onmouseup)
+  document.addEventListener('keydown', onkeydown)
 
   const classname = $derived(
     $toggles.darkMode ? style.root.dark : style.root.light
   )
 
   $effect(() => {
-    if ($canAutosolve) {
-      const payload = {
+    if ($canAutosolve)
+      useEvent(autosolveEvent)({
         hints: $hints,
         selectedNumber: $selectedNumber,
         selection: $selection,
-      }
-      const eventData = { event: {}, payload }
-      pipe(eventData, autosolveEvent, dispatchFold)
-    }
+      })({})
   })
 </script>
 
 <main>
   <div
+    tabindex="0"
     class={classname}
-    {onmousedown}
-    {onmouseup}
-    role="none"
+    role="link"
   >
     <Menu />
     <Board />

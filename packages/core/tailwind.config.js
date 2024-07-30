@@ -14,6 +14,7 @@ export default {
     'top-0',
     'min-h-screen',
     'w-board',
+    'w-full',
     'h-16',
     'mb-1',
     'mr-2',
