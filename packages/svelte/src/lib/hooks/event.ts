@@ -5,6 +5,8 @@ import { dispatchFold } from '~/store'
 export const useEvent = <E, P>(
   coreEvent: CoreEvent<E, P>
 ) => {
-  return (payload: P) => (event: E) =>
+  return (payload: P) => (event: E) => {
+    console.log(coreEvent.name, payload)
     pipe({ event, payload }, coreEvent, dispatchFold)
+  }
 }

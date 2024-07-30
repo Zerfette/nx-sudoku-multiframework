@@ -15,10 +15,14 @@ import Hint from './Hint'
 import Menu from './Menu'
 
 const App: Component = () => {
-  const onMouseDown = useEvent(mouseDownEvent)({
-    selection: state.selection,
-    toggles: state.toggles,
-  })
+  const onMouseDown = (event: MouseEvent) => {
+    const payload = {
+      selection: state.selection,
+      toggles: state.toggles,
+    }
+    const eventData = { event, payload }
+    pipe(eventData, mouseDownEvent, dispatchFold)
+  }
 
   const onMouseUp = useEvent(mouseUpEvent)({})
 

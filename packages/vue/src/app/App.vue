@@ -8,22 +8,30 @@ import {
 import { style } from 'core/style'
 import { effect } from 'vue'
 import { useEvent } from '~/lib/hooks'
-import { useState } from '~/store'
+import { dispatchFold, useState } from '~/store'
 import Board from './board/Board.vue'
 import Confetti from './Confetti.vue'
 import Hint from './hint/Hint.vue'
 import Menu from './menu/Menu.vue'
+import { pipe } from 'fp-ts/lib/function'
 
 const state = useState()
 
-const onMouseDown = useEvent(mouseDownEvent)({
-  selection: state.selection,
-  toggles: state.toggles,
-})
+const onMouseDown = (event: MouseEvent) => {
+  const payload = {
+    selection: state.selection,
+    toggles: state.toggles,
+  }
+  const eventData = { event, payload }
+  pipe(eventData, mouseDownEvent, dispatchFold)
+}
+
 const onMouseUp = useEvent(mouseUpEvent)({})
-const onKeyDown = useEvent(keyDownEvent)({
-  selection: state.selection,
-})
+const onKeyDown = (event: KeyboardEvent) => {
+  const payload = { selection: state.selection }
+  const eventData = { event, payload }
+  pipe(eventData, keyDownEvent, dispatchFold)
+}
 const onAutosolve = useEvent(autosolveEvent)
 
 effect(() => {

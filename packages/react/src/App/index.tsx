@@ -15,6 +15,7 @@ import {} from '~/lib/hooks'
 import { useEvent } from '~/lib/hooks'
 import { useStore } from '~/store'
 import Board from './Board'
+import { Confetti } from './Confetti'
 import Hint from './Hint'
 import Menu from './Menu'
 
@@ -55,6 +56,7 @@ const App = () => {
       <Menu />
       <Board />
       <Hint />
+      <Confetti />
     </div>
   )
 }
