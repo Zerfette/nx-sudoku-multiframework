@@ -38,6 +38,7 @@
     const eventData = { event, payload }
     pipe(eventData, keyDownEvent, dispatchFold)
   }
+  document.addEventListener('keydown', onkeydown)
 
   const classname = $derived(
     $toggles.darkMode ? style.root.dark : style.root.light
@@ -60,7 +61,6 @@
     role="link"
     {onmousedown}
     {onmouseup}
-    {onkeydown}
   >
     <Menu />
     <Board />

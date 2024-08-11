@@ -29,12 +29,12 @@ export const setupEdit = (element: HTMLDivElement) => {
       ? toIcon('lock')
       : toIcon('plus')
   })
-  element.onclick = () => {
+  element.addEventListener('mousedown', () => {
     disclosure.isOpen
       ? dispatch(lockBoard)
       : dispatch(clearBoard)
     disclosure.onToggle()
-  }
+  })
 
   element.classList.add(...style.menu.btns.off.split(' '))
   element.innerHTML = toIcon('plus')

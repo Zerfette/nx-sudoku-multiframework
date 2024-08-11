@@ -11,8 +11,12 @@
       ? style.hint.number.on
       : style.hint.number.off
   )
+  const event = new KeyboardEvent('keydown', {
+    key: digit.toString(),
+  })
+  const onclick = () => document.dispatchEvent(event)
 </script>
 
-<div class={className}>
+<button class={className} {onclick}>
   {digit}
-</div>
+</button>

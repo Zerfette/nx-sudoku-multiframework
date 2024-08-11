@@ -1,10 +1,8 @@
 import cn from 'classnames'
-import { type Disclosure } from '~/lib/hooks'
 import { IO } from 'fp-ts/IO'
 import { useEffect, useRef } from 'react'
 import { ReactFC } from '../../types'
-import { inBounds } from './model'
-import './style.module.css'
+import { inBounds } from 'core/lib/components/modal'
 
 export type Dialog = HTMLDialogElement & {
   showModal: IO<void>
@@ -12,12 +10,12 @@ export type Dialog = HTMLDialogElement & {
 }
 
 export const Modal: ReactFC<{
-  disclosure: Disclosure
-}> = ({ children, disclosure, className }) => {
+ isOpen: boolean, onClose: IO<void>
+}> = ({ children, className, isOpen, onClose }) => {
   let modal = useRef<Dialog>((<></>) as unknown as Dialog)
   const close = () => {
     modal.current.close()
-    disclosure.onClose()
+    onClose()
     document.body.style.overflow = ''
   }
 
@@ -27,13 +25,13 @@ export const Modal: ReactFC<{
   }
 
   const clickOffListener = (event: React.MouseEvent) => {
-    var rect = modal.current.getBoundingClientRect()
-    if (!inBounds(rect)(event)) close()
+    if (inBounds(modal.current)(event as unknown as MouseEvent)) return
+    close()
   }
 
   useEffect(
-    () => (disclosure.isOpen ? open() : close()),
-    [disclosure.isOpen]
+    () => (isOpen ? open() : close()),
+    [isOpen]
   )
 
   return (

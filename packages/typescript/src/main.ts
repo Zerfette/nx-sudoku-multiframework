@@ -13,6 +13,7 @@ import {
   setupTimer,
   setupHints,
 } from './app'
+import { Stopwatch } from './lib/stopwatch'
 
 setupApp(document.querySelector<HTMLDivElement>('#app')!)
 setupBoard(
@@ -21,11 +22,13 @@ setupBoard(
 setupCells(
   document.querySelectorAll<HTMLDivElement>('.cell')!
 )
+
+const timer = document.querySelector<HTMLDivElement>('#timer')!
+const stopwatch = new Stopwatch(timer)
+
+setupTimer(timer, stopwatch)
 setupAutosolve(
   document.querySelector<HTMLDivElement>('#autosolve')!
-)
-setupTimer(
-  document.querySelector<HTMLDivElement>('#timer')!
 )
 setupColorMode(
   document.querySelector<HTMLDivElement>('#colorMode')!
@@ -34,7 +37,8 @@ setupConfetti(
   document.querySelector<HTMLDivElement>('#canvas')!
 )
 setupEdit(document.querySelector<HTMLDivElement>('#edit')!)
-setupHelp(document.querySelector<HTMLDivElement>('#help')!)
+const helpBtn = document.querySelector<HTMLDivElement>('#help')!
+setupHelp(helpBtn, stopwatch)
 setupStartOver(
   document.querySelector<HTMLDivElement>('#startOver')!
 )

@@ -53,6 +53,14 @@ export const style = {
       on: 'flex mr-2 items-center justify-center size-8 rounded-sm leading-none text-xl bg-purple-300 dark:bg-purple-600',
       off: 'flex mr-2 items-center justify-center size-8 rounded-sm leading-none text-xl text-gray-500 bg-gray-300 dark:bg-gray-700',
     },
-    fallback: 'h-16 text-xl text-black dark:text-white'
+    fallback: 'h-16 text-xl text-black dark:text-white',
+  },
+  component: {
+    modal: 'p-24 rounded dark:text-white dark:bg-gray-950 backdrop:backdrop-blur-sm'
+  },
+  typography: {
+    h1: 'mb-2 text-3xl font-extrabold leading-tight',
+    p: 'text-lg my-6',
+    kbd: 'px-2 py-2 m-2 text-xs font-semibold bg-white border border-gray-200 rounded',
   },
 }

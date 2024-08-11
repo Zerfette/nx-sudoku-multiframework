@@ -49,19 +49,58 @@ export const setupApp = (element: HTMLDivElement) => {
         <p id="stopwatchText" class="${
           style.menu.timer.txt
         }"></p>
-        <div id="stopwatchToggle" class="${
+        <button id="stopwatchToggle" class="${
           style.menu.timer.btn
-        }"></div>
-        <div id="stopwatchReset" class="${
+        }"></button>
+        <button id="stopwatchReset" class="${
           style.menu.timer.btn
-        }"></div>
+        }"></button>
       </div>
-      <div class=${style.menu.btns.root}>
-        <div id="startOver"></div>
-        <div id="edit"></div>
-        <div id="autosolve"></div>
-        <div id="colorMode"></div>
-        <div id="help"></div>
+      <div class="${style.menu.btns.root}">
+        <button id="startOver"></button>
+        <button id="edit"></button>
+        <button id="autosolve"></button>
+        <button id="colorMode"></button>
+        <button id="help"></button>
+        <dialog id="helpModal" class="${
+          style.component.modal
+        }">
+          <h1 class="${
+            style.typography.h1
+          }">Getting Started</h1>
+          <p class="${
+            style.typography.p
+          }">Click cells to select them.</p>
+          <p class="${
+            style.typography.p
+          }">Hold<kbd class="${
+    style.typography.kbd
+  }">CTRL</kbd>to select multiple cells.</p>
+  <p class="${style.typography.p}">
+          Press
+          <kbd class="${style.typography.kbd}">CTRL</kbd>+
+          <kbd class="${style.typography.kbd}">A</kbd>
+          to select all cells.
+        </p>
+        <p class="${style.typography.p}">
+          Press
+          <kbd class="${style.typography.kbd}">ENTER</kbd>
+          or click off the board to clear the selection.
+        </p>
+        <p class="${style.typography.p}">
+          Press any number
+          <kbd class="${style.typography.kbd}">1</kbd>
+          ...
+          <kbd class="${style.typography.kbd}">9</kbd>
+          on the keyboard to place that number in the
+          selected cells.
+        </p>
+        <p class="${style.typography.p}">
+          Press
+          <kbd class="${style.typography.kbd}">DEL</kbd>
+          to remove numbers from selected cells.
+        </p>
+        </dialog>
       </div>
     </div>
     <div class="${style.board.root}" id="board">
@@ -71,7 +110,9 @@ export const setupApp = (element: HTMLDivElement) => {
     <div class="${style.hint.numbers}">
       ${map(toDigit)(digits).join('\n')}
     </div>
-    <div id="hintFallback" class="${style.hint.fallback}"></div>
+    <div id="hintFallback" class="${
+      style.hint.fallback
+    }"></div>
     </div>
 `
   const onMouseDown = useEvent(mouseDownEvent)

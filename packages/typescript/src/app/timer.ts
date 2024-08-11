@@ -10,7 +10,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { Stopwatch } from '../lib/stopwatch'
 
-export const setupTimer = (element: HTMLDivElement) => {
+export const setupTimer = (
+  element: HTMLDivElement,
+  stopwatch: Stopwatch
+) => {
   library.add(faPause, faPlay, faUndoAlt)
   const toIcon = (iconName: IconName) =>
     icon({
@@ -18,19 +21,17 @@ export const setupTimer = (element: HTMLDivElement) => {
       iconName,
     }).html.join(' ')
 
-  const stopwatch = new Stopwatch(element)
-
   const Text = element.querySelector('#stopwatchText')!
   Text.innerHTML = stopwatch.time
 
   const Toggle = element.querySelector<HTMLDivElement>(
     '#stopwatchToggle'
   )!
-  Toggle.onclick = () => {
+  Toggle.addEventListener('mousedown', () => {
     stopwatch.isRunning
       ? stopwatch.stopTimer()
       : stopwatch.startTimer()
-  }
+  })
 
   const Reset = element.querySelector('#stopwatchReset')!
   Reset.innerHTML = toIcon('undo-alt')

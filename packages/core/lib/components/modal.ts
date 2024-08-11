@@ -6,8 +6,21 @@ export type Dialog = HTMLDialogElement & {
   close: IO<void>
 }
 
-type targets = (
-  target: HTMLDialogElement | Dialog
-) => Predicate<MouseEvent>
-export const targets: targets = (target) => (event) =>
-  event.target === target
+type inRange = (
+  min: number,
+  max: number
+) => Predicate<number>
+export const inRange: inRange = (min, max) => (value) =>
+  min <= value && value <= max
+
+type inBounds = (modal: Dialog) => Predicate<MouseEvent>
+export const inBounds: inBounds =
+  (modal) =>
+  ({ clientX, clientY }) => {
+    const { top, left, width, height } =
+      modal.getBoundingClientRect()
+    return (
+      inRange(top, top + height)(clientY) &&
+      inRange(left, left + width)(clientX)
+    )
+  }

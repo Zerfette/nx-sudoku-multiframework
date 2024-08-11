@@ -62,11 +62,8 @@ export const useStopwatch: IO<Stopwatch> = () => {
 
   const stopTimer = () => setIsRunning(false)
 
-  const toggleTimer = () => {
-    console.log('before', isRunning)
+  const toggleTimer = () =>
     isRunning ? stopTimer() : startTimer()
-    console.log('after', isRunning)
-  }
 
   return {
     time,

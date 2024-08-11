@@ -1,5 +1,5 @@
 import { style } from 'core/style'
-import { useStopwatch } from '~/lib/hooks'
+import { Stopwatch, useStopwatch } from '~/lib/hooks'
 import { state } from '~/store'
 import Autosolve from './Autosolve'
 import ColorMode from './ColorMode'
@@ -7,7 +7,13 @@ import Edit from './Edit'
 import Help from './Help'
 import StartOver from './StartOver'
 import Timer from './Timer'
-import { createEffect, onMount } from 'solid-js'
+import {
+  createContext,
+  createEffect,
+  onMount,
+} from 'solid-js'
+
+export const Context = createContext<Stopwatch>()
 
 const _ = () => {
   const stopwatch = useStopwatch()
@@ -18,16 +24,18 @@ const _ = () => {
     stopwatch.stopTimer()
   })
   return (
-    <div class={style.menu.root}>
-      <Timer stopwatch={stopwatch} />
-      <div class={style.menu.btns.root}>
-        <StartOver />
-        <Edit />
-        <Autosolve />
-        <ColorMode />
-        <Help />
+    <Context.Provider value={stopwatch}>
+      <div class={style.menu.root}>
+        <Timer />
+        <div class={style.menu.btns.root}>
+          <StartOver />
+          <Edit />
+          <Autosolve />
+          <ColorMode />
+          <Help />
+        </div>
       </div>
-    </div>
+    </Context.Provider>
   )
 }
 

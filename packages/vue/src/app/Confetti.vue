@@ -21,5 +21,5 @@ onUnmounted(() => p5?.remove())
 </script>
 
 <template>
-  <div ref="canvas" :class="style.menu.confetti" />
+  <div ref="canvas" :class="style.menu.confetti" ></div>
 </template>

@@ -1,28 +1,43 @@
-import { type Dialog, targets } from 'core/lib/components/modal'
+import {
+  type Dialog,
+  inBounds,
+} from 'core/lib/components/modal'
 import { IO } from 'fp-ts/IO'
-import { Component, createEffect } from 'solid-js'
-import { Accessor } from 'solid-js'
+import {
+  Accessor,
+  ParentComponent,
+  createEffect,
+} from 'solid-js'
 
-type Props = {
-  children: string
+interface Props {
+  className: string
   isOpen: Accessor<boolean>
   onClose: IO<void>
 }
 
-const _: Component<Props> = ({ children, isOpen, onClose }) => {
+const _: ParentComponent<Props> = ({
+  children,
+  className,
+  isOpen,
+  onClose,
+}) => {
   let modal = (<></>) as Dialog
   const close = () => {
     modal.close()
     onClose()
   }
 
-  createEffect(() => (isOpen() ? modal.showModal() : close()))
+  createEffect(() =>
+    isOpen() ? modal.showModal() : close()
+  )
 
-  const onClick = (event: MouseEvent) =>
-    targets(modal)(event) ? close() : null
+  const onClick = (event: MouseEvent) => {
+    if (inBounds(modal)(event)) return
+    close()
+  }
 
   return (
-    <dialog ref={modal} onClick={onClick}>
+    <dialog ref={modal} onClick={onClick} class={className}>
       <div>{children}</div>
     </dialog>
   )
