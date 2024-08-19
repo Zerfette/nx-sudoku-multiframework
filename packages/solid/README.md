@@ -1,39 +1,34 @@
-# Solid + TS + Vite + Tailwind + P5
+#  Solid + TypeScript + Vite + Tailwind + P5
+
+
+## Demo
+
+### [https://solid.zerf.dev/](https://solid.zerf.dev/)
+![screenshot](./public/screenshot.png)
 
 ## Usage
+
+### Install
 
 ```bash
 $ npm install # or pnpm install or yarn install
 ```
 
-## Bookmarks
-
-- https://www.solidjs.com/docs/latest/api
-
-- https://fontawesome.com/v6/icons?o=r&m=free
-
-- https://p5js.org/reference/
-
-- https://tailwindcss.com/docs
-
-- https://vitejs.dev/guide/
-
-- https://www.typescriptlang.org/docs/
-
-## Available Scripts
+### Develop
 
 In the project directory, you can run:
 
-### `npm run dev`
+`npm run dev`
 
-In the nx directory, you can run:
+In the root nx directory, you can run:
 
-### `npx nx run solid:dev`
+`npx nx run solid:dev`
 
-Runs the app in the development mode.<br>
+Both run the app in development mode.<br>
 Open [http://localhost:5005](http://localhost:5005) to view it in the browser.
 
-### `npm run build`
+### Build
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+`npm run build`
+
+Builds the app for production to the `dist` folder.

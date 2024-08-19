@@ -1,6 +1,6 @@
 # <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a> Sudoku
 
-This repository leverages Nx, a powerful monorepo tool, to manage a collection of projects centered around creating Sudoku applications in several popular JavaScript frameworks: React, Solid, Vue, and Svelte. It promotes code reusability, efficient development, and a shared foundation for consistency across applications.
+This repository leverages Nx, a powerful monorepo tool, to manage a collection of projects centered around creating Sudoku applications using different frontend technologies. It promotes code reusability, efficient development, and a shared foundation for consistency across applications.
 
 ## 🔑 Key Features
 
@@ -21,10 +21,11 @@ projects/
   lit/              # WIP Sudoku app implementation in Lit
   preact/           # WIP Sudoku app implementation in Preact
   qwik/             # WIP Sudoku app implementation in Qwik
-  react/            # WIP Sudoku app implementation in React
+  react/            # Sudoku app implementation in React
   solid/            # Sudoku app implementation in Solid
-  vue/              # Sudoku app implementation in Vue
   svelte/           # Sudoku app implementation in Svelte
+  typescript/       # Sudoku app implementation in TypeScript without a framework
+  vue/              # Sudoku app implementation in Vue
 ```
 ## 🦺 Functional Foundations
 
@@ -53,3 +54,11 @@ Example:
 ```
 npx nx run svelte:dev
 ```
+
+## 🎧 Demos
+### [https://react.zerf.dev/](https://react.zerf.dev/)
+### [https://solid.zerf.dev/](https://solid.zerf.dev/)
+### [https://svelte.zerf.dev/](https://svelte.zerf.dev/)
+### [https://typescript.zerf.dev/](https://typescript.zerf.dev/)
+### [https://vue.zerf.dev/](https://vue.zerf.dev/)
+![screenshot](./packages/vue/public/screenshot.png)

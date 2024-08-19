@@ -1,9 +1,9 @@
-# Svelte 5 + TypeScript + Vite + Tailwind + P5
+#  TypeScript + Vite + Tailwind + P5
 
 
 ## Demo
 
-### [https://svelte.zerf.dev/](https://svelte.zerf.dev/)
+### [https://typescript.zerf.dev/](https://typescript.zerf.dev/)
 ![screenshot](./public/screenshot.png)
 
 ## Usage
@@ -22,10 +22,10 @@ In the project directory, you can run:
 
 In the root nx directory, you can run:
 
-`npx nx run svelte:dev`
+`npx nx run typescript:dev`
 
 Both run the app in development mode.<br>
-Open [http://localhost:5006](http://localhost:5006) to view it in the browser.
+Open [http://localhost:5007](http://localhost:5007) to view it in the browser.
 
 ### Build
 
