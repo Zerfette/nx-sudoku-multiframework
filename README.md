@@ -12,6 +12,8 @@ This repository leverages Nx, a powerful monorepo tool, to manage a collection o
 
  - **Efficient:** Leverage built-in Nx commands for streamlined development tasks like building, testing, and linting across all projects.
 
+ - **Reproducible:** A built-in Nix flake provides a consistent, dependency-free dev environment across systems.
+
 ## 🏗️ Structure
 ```
 projects/
@@ -42,6 +44,23 @@ While this monorepo lets you explore Sudoku through popular frameworks, its true
 ## 🎉 P5 Confetti Magic
 
 This Nx monorepo adds a touch of celebratory flair with an integrated P5 sketch function for drawing dynamic confetti explosions! Nestled within `packages/confetti`, this reusable function seamlessly integrates into any framework-specific application, using framework-specific mechanisms (e.g., custom components, hooks).
+
+## ❄️ Nix Flake Support
+This repo includes a Nix flake for a reproducible dev environment — no global installs needed.
+
+Includes:
+
+ - Node.js 22
+
+ - lolcat (for a fun welcome)
+
+ - Custom prompt + ASCII banner
+
+🔧 Usage
+
+1. Install Nix and enable flakes
+
+2. Run `nix develop`
 
 ## 🛠️ Start Development Server
 
