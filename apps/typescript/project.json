@@ -1,0 +1,29 @@
+{
+  "name": "typescript",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/typescript/src",
+  "implicitDependencies": [
+    "sudoku-core",
+    "zerf-confetti",
+    "zerf-fns"
+  ],
+  "targets": {
+    "dev": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "port": 5007,
+        "buildTarget": "typescript:build",
+        "configFile": "apps/typescript/vite.config.ts"
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{projectRoot}/apps/typescript/dist"],
+      "options": {
+        "outputPath": "apps/typescript/dist",
+        "configFile": "apps/typescript/vite.config.ts"
+      }
+    }
+  }
+}

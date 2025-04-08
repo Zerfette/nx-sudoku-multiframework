@@ -1,0 +1,31 @@
+{
+  "name": "react",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/react/src",
+  "implicitDependencies": [
+    "sudoku-core",
+    "zerf-confetti",
+    "zerf-fns"
+  ],
+  "targets": {
+    "dev": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "port": 5004,
+        "configFile": "apps/react/vite.config.ts",
+        "tsConfig": "apps/react/tsconfig.json",
+        "buildTarget": "react:build"
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{projectRoot}/apps/react/dist"],
+      "options": {
+        "outputPath": "apps/react/dist",
+        "configFile": "apps/react/vite.config.ts",
+        "tsConfig": "apps/react/tsconfig.json"
+      }
+    }
+  }
+}

@@ -27,7 +27,6 @@
             echo -e "$BLUE"
             echo -e "🔷 node: $NODE_VERSION"
             echo -e "$WHITE"
-
             export PS1="nx-sudoku $ $SHOWCURSOR"
           '';
         };

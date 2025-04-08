@@ -1,0 +1,31 @@
+{
+  "name": "vue",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/vue/src",
+  "implicitDependencies": [
+    "sudoku-core",
+    "zerf-confetti",
+    "zerf-fns"
+  ],
+  "targets": {
+    "dev": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "port": 5008,
+        "configFile": "apps/vue/vite.config.ts",
+        "tsConfig": "apps/vue/tsconfig.json",
+        "buildTarget": "vue:build"
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{projectRoot}/apps/vue/dist"],
+      "options": {
+        "outputPath": "apps/vue/dist",
+        "configFile": "apps/vue/vite.config.ts",
+        "tsConfig": "apps/vue/tsconfig.json"
+      }
+    }
+  }
+}

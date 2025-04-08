@@ -1,0 +1,31 @@
+{
+  "name": "svelte",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/svelte/src",
+  "implicitDependencies": [
+    "sudoku-core",
+    "zerf-confetti",
+    "zerf-fns"
+  ],
+  "targets": {
+    "dev": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "port": 5006,
+        "configFile": "apps/svelte/vite.config.mts",
+        "tsConfig": "apps/svelte/tsconfig.json",
+        "buildTarget": "svelte:build"
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{projectRoot}/apps/svelte/dist"],
+      "options": {
+        "outputPath": "apps/svelte/dist",
+        "configFile": "apps/svelte/vite.config.mts",
+        "tsConfig": "apps/svelte/tsconfig.json"
+      }
+    }
+  }
+}

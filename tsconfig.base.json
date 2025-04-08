@@ -1,0 +1,29 @@
+// tsconfig.base.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "apps/react/*": ["apps/react/src/*"],
+      "apps/solid/*": ["apps/solid/src/*"],
+      "apps/svelte/*": ["apps/svelte/src/*"],
+      "apps/vue/*": ["apps/vue/src/*"],
+      "confetti/*": ["libs/confetti/src/*"],
+      "core/*": ["libs/core/src/*"],
+      "fns": ["libs/fns/src/index.ts"]
+    },
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+  }
+}
